@@ -5,7 +5,7 @@ import gspread
 creds_dict = {
     "type": st.secrets["type"],
     "project_id": st.secrets["project_id"],
-    "private_key": st.secrets["private_key"],
+    "private_key": st.secrets["private_key"].replace("\\n", "\n"),
     "client_email": st.secrets["client_email"],
     "token_uri": st.secrets["token_uri"],
 }
