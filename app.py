@@ -1,9 +1,10 @@
 import streamlit as st
 import gspread
+import json
 
-# Connect to Google Sheets using the JSON key
-gc = gspread.service_account(filename='service_account.json')
-sh = gc.open("Legacy Farms Inventory")
+# Load credentials securely from Streamlit secrets
+creds_dict = json.loads(st.secrets["google_credentials"])
+gc = gspread.service_account_from_dict(creds_dict)
 worksheet = sh.worksheet("Inventory")
 
 # Fetch data from the sheet
