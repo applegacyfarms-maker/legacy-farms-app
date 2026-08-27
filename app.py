@@ -2,13 +2,16 @@ import streamlit as st
 import gspread
 
 # Build the connection credentials directly from Streamlit's native secrets
-creds_dict = {
-    "type": st.secrets["type"],
-    "project_id": st.secrets["project_id"],
-    "private_key": st.secrets["private_key"].replace("\\n", "\n"),
-    "client_email": st.secrets["client_email"],
-    "token_uri": st.secrets["token_uri"],
-}
+import streamlit as st
+import gspread
+import json
+
+# Load the perfect JSON block securely from Streamlit
+creds_dict = json.loads(st.secrets["google_credentials"])
+
+gc = gspread.service_account_from_dict(creds_dict)
+sh = gc.open("Legacy Farms Inventory")
+worksheet = sh.worksheet("Inventory")
 
 gc = gspread.service_account_from_dict(creds_dict)
 sh = gc.open("Legacy Farms Inventory")
