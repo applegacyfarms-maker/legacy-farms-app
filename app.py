@@ -1,15 +1,13 @@
 import streamlit as st
 import gspread
-import json
 
-# Load the perfect JSON block securely from Streamlit
-creds_dict = json.loads(st.secrets["google_credentials"])
+# 1. Recreate the physical JSON file in the cloud server's temporary memory
+with open("/tmp/service_account.json", "w") as f:
+    f.write(st.secrets["google_credentials"])
 
-# Force the line breaks in the private key to format correctly for Google's cryptography
-creds_dict["private_key"] = creds_dict["private_key"].replace("\\n", "\n")
+# 2. Connect exactly how you did on your home PC
+gc = gspread.service_account(filename="/tmp/service_account.json")
 
-# Connect to the Google Sheet
-gc = gspread.service_account_from_dict(creds_dict)
 sh = gc.open("Legacy Farms Inventory")
 worksheet = sh.worksheet("Inventory")
 # Fetch data from the sheet
