@@ -52,12 +52,11 @@ FOOTER_HTML = f"""
         <div style="margin-top: 5px;">
             <strong>Sarah Jenkins, Farm Manager</strong><br>
             <a href="mailto:sjenkins@legacyfarm.net" style="color: #2e8b57; text-decoration: none;">sjenkins@legacyfarm.net</a><br>
-            <a href="tel:5555550199" style="color: #1c452e; text-decoration: none;">(555) 555-0199</a><br>
-            Legacy Farm, 123 Rural Lane, Farmville, ST 98765<br>
-            <a href="http://www.legacyfarm.net" style="color: #2e8b57; text-decoration: none;">www.legacyfarm.net</a><br>
+            <a href="tel:(251)331-2132" style="color: #1c452e; text-decoration: none;">(555) 555-0199</a><br>
+            Legacy Farms and Nursery, 14051 Boothtown Rd, Citronelle, AL 36522<br>
+            <a href="http://www.legacyfarm.net" style="color: #2e8b57; text-decoration: none;">www.legacyfarmsandnursery.com/</a><br>
             <div style="margin-top: 10px; font-size: 0.9em;">
-                Follow us: | <a href="https://www.facebook.com/LegacyFarm" style="color: #2e8b57; text-decoration: none;">Facebook @LegacyFarm</a> | 
-                <a href="https://www.instagram.com/LegacyFarm" style="color: #2e8b57; text-decoration: none;">Instagram @LegacyFarm</a> |
+                Follow us: | <a href="https://www.facebook.com/p/Legacy-Farms-and-Nursery-100084808846225" style="color: #2e8b57; text-decoration: none;">Facebook @Legacy-Farms-and-Nursery</a> | 
             </div>
         </div>
     </div>
