@@ -71,7 +71,7 @@ with tab2:
         worksheet.update_cell(row_index, 2, new_qty)
         st.success(f"Successfully added {restock_qty} to {fix_item}! New total: {new_qty}")
         st.rerun()
-   with tab3:
+with tab3:
     st.header("Broadcast Stock Email")
     st.write("Clicking this button will instantly email the current inventory to all customers.")
     
