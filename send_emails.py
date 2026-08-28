@@ -47,9 +47,9 @@ def send_update_email(customer_email, html_body):
 # Replace placeholder details as needed.
 LOGOUT_URL = "https://raw.githubusercontent.com/applegacyfarms-maker/legacy-farms-app/main/legacy_logo.png"
 FOOTER_HTML = f"""
-    <div style="border-top: 2px solid #2e8b57; padding-top: 10px; margin-top: 20px; font-family: sans-serif; text-align: center; color: #1c452e;">
-        <img src="{LOGOUT_URL}" alt="Legacy Farm" style="max-width: 100%; height: auto;">
-        <div style="margin-top: 10px;">
+    <div style="border-top: 2px solid #2e8b57; padding-top: 15px; margin-top: 25px; font-family: sans-serif; text-align: center; color: #1c452e;">
+        <img src="{LOGOUT_URL}" alt="Legacy Farm" style="max-width: 200px; width: 100%; height: auto; display: block; margin: 0 auto 10px auto;"><br>
+        <div style="margin-top: 5px;">
             <strong>Sarah Jenkins, Farm Manager</strong><br>
             <a href="mailto:sjenkins@legacyfarm.net" style="color: #2e8b57; text-decoration: none;">sjenkins@legacyfarm.net</a><br>
             <a href="tel:5555550199" style="color: #1c452e; text-decoration: none;">(555) 555-0199</a><br>
