@@ -1,0 +1,20 @@
+name: Weekly Inventory Email
+
+on:
+  schedule:
+    - cron: '0 13 * * 1' # Runs at 13:00 UTC (8:00 AM Central) every Monday
+  workflow_dispatch: # Allows you to click a button to test it immediately
+
+jobs:
+  send_email:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.14'
+      - run: pip install gspread
+      - run: python send_emails.py
+        env:
+          GCP_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}
+          GMAIL_PASSWORD: ${{ secrets.GMAIL_PASSWORD }}
