@@ -137,7 +137,7 @@ with tab3:
                         personalized_html = f"<h2>Hi {customer_name}, here is what's fresh this week at Legacy Farms!</h2>" + inventory_list + FOOTER_HTML
     
                         msg = MIMEMultipart("alternative")
-                        msg['Subject'] = "Legacy Farms: Fresh stock is ready!"
+                        msg['Subject'] = f"Legacy Farms: Fresh stock is ready! ({current_time})"
                         msg['From'] = SENDER_EMAIL
                         msg['To'] = email
     
