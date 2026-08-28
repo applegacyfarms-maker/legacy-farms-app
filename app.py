@@ -88,7 +88,7 @@ with tab3:
                 inventory_list = "<ul>"
                 for item in available_items:
                     inventory_list += f"<li><b>{item['Item Name']}</b>: {item['Quantity Available']} available at ${item['Price']}</li>"
-                inventory_list += "</ul><p>This is an automated email from Lageacy Farms, please contact them directly at the contact info below to order. Thanks!</p>"
+                inventory_list += "</ul><p>This is an automated email from Legacy Farms, please contact them directly at the contact info below to order. Thanks!</p>"
                 
                 # Define the footer and hosted image URL
                 LOGOUT_URL = "https://raw.githubusercontent.com/applegacyfarms-maker/legacy-farms-app/main/legacy_logo.png"
@@ -124,7 +124,7 @@ with tab3:
                     if email and send_status == 'yes':
                    
                                # 1. Create a simple text-only fallback (no HTML tags)
-                        plain_text = f"Hi {customer_name}, here is what's fresh this week at Legacy Farms!\n\nReply to this email to reserve your order before we hit the road."
+                        plain_text = f"Hi {customer_name}, here is what's fresh this week at Legacy Farms!\n\nThis is an automated email from Legacy Farms, please contact them directly at the contact info below to order. Thanks!"
     
                         # 2. Your existing HTML format
                         personalized_html = f"<h2>Hi {customer_name}, here is what's fresh this week at Legacy Farms!</h2>" + inventory_list + FOOTER_HTML
