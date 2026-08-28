@@ -73,7 +73,7 @@ with tab2:
         st.rerun()
 with tab3:
     st.header("Broadcast Stock Email")
-    st.write("Clicking this button will instantly email the current inventory to all customers.")
+    st.write("Clicking this button will instantly email the current inventory to all selected customers.")
     
     if st.button("Send Email Blast Now"):
         with st.spinner("Compiling inventory and sending emails..."):
@@ -111,15 +111,17 @@ with tab3:
                 SENDER_EMAIL = "app.legacyfarms@gmail.com"
                 APP_PASSWORD = st.secrets["GMAIL_PASSWORD"]
                 
-                # Loop through customers_data to send the emails
+                # Loop through customers and check the 'Send?' column
                 for customer in customers_data:
                     email = str(customer.get('Email Address', '')).strip()
                     customer_name = str(customer.get('Name', 'Friend')).strip()
+                    send_status = str(customer.get('Send?', 'yes')).strip().lower()
+                    
                     if not customer_name:
                         customer_name = "Friend"
                     
-                    if email:
-                        # Single braces format the variable correctly, + FOOTER_HTML attaches the design
+                    # Only send if they have an email AND are marked 'yes'
+                    if email and send_status == 'yes':
                         personalized_html = f"<h2>Hi {customer_name}, here is what's fresh this week at Legacy Farms!</h2>" + inventory_list + FOOTER_HTML
                         msg = MIMEMultipart("alternative")
                         msg['Subject'] = "Legacy Farms: Fresh stock is ready!"
@@ -131,4 +133,4 @@ with tab3:
                             server.login(SENDER_EMAIL, APP_PASSWORD)
                             server.sendmail(SENDER_EMAIL, email, msg.as_string())
                             
-                st.success("Boom! Emails successfully sent to all customers.")
+                st.success("Boom! Emails successfully sent to selected customers.")
