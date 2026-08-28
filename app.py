@@ -96,8 +96,8 @@ with tab3:
                     <div style="border-top: 2px solid #2e8b57; padding-top: 15px; margin-top: 25px; font-family: sans-serif; text-align: center; color: #1c452e;">
                         <img src="{LOGOUT_URL}" alt="Legacy Farm" style="max-width: 200px; width: 100%; height: auto; display: block; margin: 0 auto 10px auto;"><br>
                         <div style="margin-top: 5px;">
-                            <strong>Sarah Jenkins, Farm Manager</strong><br>
-                            <a href="mailto:sjenkins@legacyfarm.net" style="color: #2e8b57; text-decoration: none;">sjenkins@legacyfarm.net</a><br>
+                            <strong>Walt Turner, Farm Manager</strong><br>
+                            <a href="mailto:walt.legacyfarms@gmail.com" style="color: #2e8b57; text-decoration: none;">walt.legacyfarms@gmail.com</a><br>
                             <a href="tel:(251)331-2132" style="color: #1c452e; text-decoration: none;">(555) 555-0199</a><br>
                             Legacy Farms and Nursery, 14051 Boothtown Rd, Citronelle, AL 36522<br>
                             <a href="http://www.legacyfarm.net" style="color: #2e8b57; text-decoration: none;">www.legacyfarmsandnursery.com/</a><br>
