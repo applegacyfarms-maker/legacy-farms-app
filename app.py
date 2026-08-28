@@ -143,8 +143,8 @@ with tab3:
                     msg.attach(MIMEText(plain_text, "plain"))
                     msg.attach(MIMEText(personalized_html, "html"))
                     
-                        with smtplib.SMTP_SSL('smtp.gmail.com', 465) as server:
-                            server.login(SENDER_EMAIL, APP_PASSWORD)
-                            server.sendmail(SENDER_EMAIL, email, msg.as_string())
+                    with smtplib.SMTP_SSL('smtp.gmail.com', 465) as server:
+                        server.login(SENDER_EMAIL, APP_PASSWORD)
+                        server.sendmail(SENDER_EMAIL, email, msg.as_string())
                             
                 st.success("Boom! Emails successfully sent to selected customers.")
