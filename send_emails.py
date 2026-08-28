@@ -54,7 +54,7 @@ FOOTER_HTML = f"""
             <a href="mailto:walt.legacyfarms@gmail.com" style="color: #2e8b57; text-decoration: none;">walt.legacyfarms@gmail.com</a><br>
             <a href="tel:(251)331-2132" style="color: #1c452e; text-decoration: none;">(251)331-2132</a><br>
             Legacy Farms and Nursery, 14051 Boothtown Rd, Citronelle, AL 36522<br>
-            <a href="http://www.legacyfarm.net" style="color: #2e8b57; text-decoration: none;">www.legacyfarmsandnursery.com/</a><br>
+            <a href="https://www.legacyfarmsandnursery.com/" style="color: #2e8b57; text-decoration: none;">www.legacyfarmsandnursery.com/</a><br>
             <div style="margin-top: 10px; font-size: 0.9em;">
                 Follow us: | <a href="https://www.facebook.com/p/Legacy-Farms-and-Nursery-100084808846225" style="color: #2e8b57; text-decoration: none;">Facebook @Legacy-Farms-and-Nursery</a> | 
             </div>
