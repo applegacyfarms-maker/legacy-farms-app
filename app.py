@@ -145,4 +145,4 @@ for customer in customers:
         send_update_email(email, personalized_html)
         print(f"Sent update to {{customer_name}} at {{email}}.")
                                 
-                    st.success("Boom! Emails successfully sent to all customers.")
+        st.success("Boom! Emails successfully sent to all customers.")
