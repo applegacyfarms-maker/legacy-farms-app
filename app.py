@@ -50,7 +50,7 @@ with tab2:
         row_index = item_names.index(fix_item) + 2
         worksheet.update_cell(row_index, 2, new_total)
         st.success(f"Fixed! {fix_item} inventory is now set to {new_total}.")
-st.rerun() # Refreshes the screen instantly after overwriting
+        st.rerun() # Refreshes the screen instantly after overwriting
 
     st.divider() # Draws a clean visual line between the two tools
     
