@@ -42,6 +42,40 @@ def send_update_email(customer_email, html_body):
     with smtplib.SMTP_SSL('smtp.gmail.com', 465) as server:
         server.login(SENDER_EMAIL, APP_PASSWORD)
         server.sendmail(SENDER_EMAIL, customer_email, msg.as_string())
+        
+        # 3. Create the Footer with personalized greeting
+# Replace placeholder details as needed.
+LOGOUT_URL = "URL_OF_YOUR_ONLINE_HOSTED_LOGO_IMAGE" # Put the image online!
+FOOTER_HTML = f"""
+    <div style="border-top: 2px solid #2e8b57; padding-top: 10px; margin-top: 20px; font-family: sans-serif; text-align: center; color: #1c452e;">
+        <img src="{LOGOUT_URL}" alt="Legacy Farm" style="max-width: 100%; height: auto;"><br>
+        <div style="margin-top: 10px;">
+            <strong>Sarah Jenkins, Farm Manager</strong><br>
+            <a href="mailto:sjenkins@legacyfarm.net" style="color: #2e8b57; text-decoration: none;">sjenkins@legacyfarm.net</a><br>
+            <a href="tel:5555550199" style="color: #1c452e; text-decoration: none;">(555) 555-0199</a><br>
+            Legacy Farm, 123 Rural Lane, Farmville, ST 98765<br>
+            <a href="http://www.legacyfarm.net" style="color: #2e8b57; text-decoration: none;">www.legacyfarm.net</a><br>
+            <div style="margin-top: 10px; font-size: 0.9em;">
+                Follow us: | <a href="https://www.facebook.com/LegacyFarm" style="color: #2e8b57; text-decoration: none;">Facebook @LegacyFarm</a> | 
+                <a href="https://www.instagram.com/LegacyFarm" style="color: #2e8b57; text-decoration: none;">Instagram @LegacyFarm</a> |
+            </div>
+        </div>
+    </div>
+"""
+
+# ... rest of Section 3 (available_items loop, inventory list, etc.) ...
+# ... after Section 4 and def send_update_email ...
+
+# 5. Send personalized emails with the new footer
+for customer in customers:
+    # ... get name and email ...
+
+    if email:
+        # Combine everything, including the new footer variable
+        personalized_html = f"<h2>Hi {{customer_name}}, here is what's fresh this week at Legacy Farms!</h2>" + inventory_list + FOOTER_HTML
+        
+        send_update_email(email, personalized_html)
+        print(f"Sent update to {{customer_name}} at {{email}}.")
 
 # 5. Send personalized emails to everyone
 for customer in customers:
@@ -54,6 +88,6 @@ for customer in customers:
 
     if email:
         # Combine the custom greeting with the inventory list
-        personalized_html = f"<h2>Hi {customer_name}, here is what's fresh this week at Legacy Farms!</h2>" + inventory_list
+        personalized_html = f"<h2>Hi {customer_name}, here is what's fresh this week at Legacy Farms!</h2>" + inventory_list + FOOTER_HTML
         
         send_update_email(email, personalized_html)
