@@ -98,7 +98,7 @@ with tab3:
                         <div style="margin-top: 5px;">
                             <strong>Walt Turner, Farm Manager</strong><br>
                             <a href="mailto:walt.legacyfarms@gmail.com" style="color: #2e8b57; text-decoration: none;">walt.legacyfarms@gmail.com</a><br>
-                            <a href="tel:(251)331-2132" style="color: #1c452e; text-decoration: none;">(555) 555-0199</a><br>
+                            <a href="tel:(251)331-2132" style="color: #1c452e; text-decoration: none;">(251)331-2132</a><br>
                             Legacy Farms and Nursery, 14051 Boothtown Rd, Citronelle, AL 36522<br>
                             <a href="http://www.legacyfarm.net" style="color: #2e8b57; text-decoration: none;">www.legacyfarmsandnursery.com/</a><br>
                             <div style="margin-top: 10px; font-size: 0.9em;">
