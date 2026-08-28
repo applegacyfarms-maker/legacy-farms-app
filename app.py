@@ -88,7 +88,7 @@ with tab3:
                 inventory_list = "<ul>"
                 for item in available_items:
                     inventory_list += f"<li><b>{item['Item Name']}</b>: {item['Quantity Available']} available at ${item['Price']}</li>"
-                inventory_list += "</ul><p>Reply to this email to reserve your order before we hit the road!</p>"
+                inventory_list += "</ul><p>This is an automated email from Lageacy Farms, please contact them directly at the contact info below to order. Thanks!</p>"
                 
                 # Define the footer and hosted image URL
                 LOGOUT_URL = "https://raw.githubusercontent.com/applegacyfarms-maker/legacy-farms-app/main/legacy_logo.png"
