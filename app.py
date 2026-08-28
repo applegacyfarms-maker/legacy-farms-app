@@ -71,78 +71,65 @@ with tab2:
         worksheet.update_cell(row_index, 2, new_qty)
         st.success(f"Successfully added {restock_qty} to {fix_item}! New total: {new_qty}")
         st.rerun()
-    with tab3:
-        st.header("Broadcast Stock Email")
-        st.write("Clicking this button will instantly email the current inventory to all customers.")
-        
-        if st.button("Send Email Blast Now"):
-            with st.spinner("Compiling inventory and sending emails..."):
-                available_items = [
-                    item for item in data 
-                    if str(item['Ready to Ship?']).strip().lower() == 'yes' and int(item['Quantity Available']) > 0
-                ]
+   with tab3:
+    st.header("Broadcast Stock Email")
+    st.write("Clicking this button will instantly email the current inventory to all customers.")
+    
+    if st.button("Send Email Blast Now"):
+        with st.spinner("Compiling inventory and sending emails..."):
+            available_items = [
+                item for item in data 
+                if str(item['Ready to Ship?']).strip().lower() == 'yes' and int(item['Quantity Available']) > 0
+            ]
+            
+            if not available_items:
+                st.warning("Nothing to ship this week. Emails cancelled.")
+            else:
+                inventory_list = "<ul>"
+                for item in available_items:
+                    inventory_list += f"<li><b>{item['Item Name']}</b>: {item['Quantity Available']} available at ${item['Price']}</li>"
+                inventory_list += "</ul><p>Reply to this email to reserve your order before we hit the road!</p>"
                 
-                if not available_items:
-                    st.warning("Nothing to ship this week. Emails cancelled.")
-                else:
-                    inventory_list = "<ul>"
-                    for item in available_items:
-                        inventory_list += f"<li><b>{item['Item Name']}</b>: {item['Quantity Available']} available at ${item['Price']}</li>"
-                    inventory_list += "</ul><p>Reply to this email to reserve your order before we hit the road!</p>"
+                # Define the footer and hosted image URL
+                LOGOUT_URL = "URL_OF_YOUR_ONLINE_HOSTED_LOGO_IMAGE"
+                FOOTER_HTML = f"""
+                    <div style="border-top: 2px solid #2e8b57; padding-top: 10px; margin-top: 20px; font-family: sans-serif; text-align: center; color: #1c452e;">
+                        <img src="{LOGOUT_URL}" alt="Legacy Farm" style="max-width: 100%; height: auto;"><br>
+                        <div style="margin-top: 10px;">
+                            <strong>Sarah Jenkins, Farm Manager</strong><br>
+                            <a href="mailto:sjenkins@legacyfarm.net" style="color: #2e8b57; text-decoration: none;">sjenkins@legacyfarm.net</a><br>
+                            <a href="tel:5555550199" style="color: #1c452e; text-decoration: none;">(555) 555-0199</a><br>
+                            Legacy Farm, 123 Rural Lane, Farmville, ST 98765<br>
+                            <a href="http://www.legacyfarm.net" style="color: #2e8b57; text-decoration: none;">www.legacyfarm.net</a><br>
+                            <div style="margin-top: 10px; font-size: 0.9em;">
+                                Follow us: | <a href="https://www.facebook.com/LegacyFarm" style="color: #2e8b57; text-decoration: none;">Facebook @LegacyFarm</a> | 
+                                <a href="https://www.instagram.com/LegacyFarm" style="color: #2e8b57; text-decoration: none;">Instagram @LegacyFarm</a> |
+                            </div>
+                        </div>
+                    </div>
+                """
+                
+                SENDER_EMAIL = "app.legacyfarms@gmail.com"
+                APP_PASSWORD = st.secrets["GMAIL_PASSWORD"]
+                
+                # Loop through customers_data to send the emails
+                for customer in customers_data:
+                    email = str(customer.get('Email Address', '')).strip()
+                    customer_name = str(customer.get('Name', 'Friend')).strip()
+                    if not customer_name:
+                        customer_name = "Friend"
                     
-                    SENDER_EMAIL = "app.legacyfarms@gmail.com"
-                    APP_PASSWORD = st.secrets["GMAIL_PASSWORD"]
-                    
-                    for customer in customers_data:
-                        email = str(customer.get('Email Address', '')).strip()
-                        customer_name = str(customer.get('Name', 'Friend')).strip()
-                        if not customer_name:
-                            customer_name = "Friend"
+                    if email:
+                        # Single braces format the variable correctly, + FOOTER_HTML attaches the design
+                        personalized_html = f"<h2>Hi {customer_name}, here is what's fresh this week at Legacy Farms!</h2>" + inventory_list + FOOTER_HTML
+                        msg = MIMEMultipart("alternative")
+                        msg['Subject'] = "Legacy Farms: Fresh stock is ready!"
+                        msg['From'] = SENDER_EMAIL
+                        msg['To'] = email
+                        msg.attach(MIMEText(personalized_html, "html"))
                         
-                        if email:
-                            personalized_html = f"<h2>Hi {customer_name}, here is what's fresh this week at Legacy Farms!</h2>" + inventory_list
-                            msg = MIMEMultipart("alternative")
-                            msg['Subject'] = "Legacy Farms: Fresh stock is ready!"
-                            msg['From'] = SENDER_EMAIL
-                            msg['To'] = email
-                            msg.attach(MIMEText(personalized_html, "html"))
+                        with smtplib.SMTP_SSL('smtp.gmail.com', 465) as server:
+                            server.login(SENDER_EMAIL, APP_PASSWORD)
+                            server.sendmail(SENDER_EMAIL, email, msg.as_string())
                             
-                            with smtplib.SMTP_SSL('smtp.gmail.com', 465) as server:
-                                server.login(SENDER_EMAIL, APP_PASSWORD)
-                                server.sendmail(SENDER_EMAIL, email, msg.as_string())
-
-                    # 3. Create the Footer with personalized greeting
-# Replace placeholder details as needed.
-LOGOUT_URL = "URL_OF_YOUR_ONLINE_HOSTED_LOGO_IMAGE" # Put the image online!
-FOOTER_HTML = f"""
-    <div style="border-top: 2px solid #2e8b57; padding-top: 10px; margin-top: 20px; font-family: sans-serif; text-align: center; color: #1c452e;">
-        <img src="{LOGOUT_URL}" alt="Legacy Farm" style="max-width: 100%; height: auto;"><br>
-        <div style="margin-top: 10px;">
-            <strong>Sarah Jenkins, Farm Manager</strong><br>
-            <a href="mailto:sjenkins@legacyfarm.net" style="color: #2e8b57; text-decoration: none;">sjenkins@legacyfarm.net</a><br>
-            <a href="tel:5555550199" style="color: #1c452e; text-decoration: none;">(555) 555-0199</a><br>
-            Legacy Farm, 123 Rural Lane, Farmville, ST 98765<br>
-            <a href="http://www.legacyfarm.net" style="color: #2e8b57; text-decoration: none;">www.legacyfarm.net</a><br>
-            <div style="margin-top: 10px; font-size: 0.9em;">
-                Follow us: | <a href="https://www.facebook.com/LegacyFarm" style="color: #2e8b57; text-decoration: none;">Facebook @LegacyFarm</a> | 
-                <a href="https://www.instagram.com/LegacyFarm" style="color: #2e8b57; text-decoration: none;">Instagram @LegacyFarm</a> |
-            </div>
-        </div>
-    </div>
-"""
-
-# ... rest of Section 3 (available_items loop, inventory list, etc.) ...
-# ... after Section 4 and def send_update_email ...
-
-# 5. Send personalized emails with the new footer
-for customer in customers:
-    # ... get name and email ...
-
-    if email:
-        # Combine everything, including the new footer variable
-        personalized_html = f"<h2>Hi {{customer_name}}, here is what's fresh this week at Legacy Farms!</h2>" + inventory_list + FOOTER_HTML
-        
-        send_update_email(email, personalized_html)
-        print(f"Sent update to {{customer_name}} at {{email}}.")
-                                
-        st.success("Boom! Emails successfully sent to all customers.")
+                st.success("Boom! Emails successfully sent to all customers.")
