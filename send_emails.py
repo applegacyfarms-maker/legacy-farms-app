@@ -22,11 +22,13 @@ available_items = [
 if not available_items:
     exit()
 
-html_content = "<h2>This Week at Legacy Farms!</h2><ul>"
+# 3. Build the core inventory list (this part is the same for everyone)
+inventory_list = "<ul>"
 for item in available_items:
-    html_content += f"<li><b>{item['Item Name']}</b>: {item['Quantity Available']} available at ${item['Price']}</li>"
-html_content += "</ul><p>Reply to this email to reserve your order before we hit the road!</p>"
+    inventory_list += f"<li><b>{item['Item Name']}</b>: {item['Quantity Available']} available at ${item['Price']}</li>"
+inventory_list += "</ul><p>Reply to this email to reserve your order before we hit the road!</p>"
 
+# 4. Email Credentials
 SENDER_EMAIL = "app.legacyfarms@gmail.com"
 APP_PASSWORD = os.environ["GMAIL_PASSWORD"]
 
@@ -41,7 +43,17 @@ def send_update_email(customer_email, html_body):
         server.login(SENDER_EMAIL, APP_PASSWORD)
         server.sendmail(SENDER_EMAIL, customer_email, msg.as_string())
 
+# 5. Send personalized emails to everyone
 for customer in customers:
     email = customer.get('Email Address', '').strip()
+    
+    # Grab the name from the sheet. If it's blank, default to "Friend"
+    customer_name = str(customer.get('Name', 'Friend')).strip()
+    if not customer_name:
+        customer_name = "Friend"
+
     if email:
-        send_update_email(email, html_content)
+        # Combine the custom greeting with the inventory list
+        personalized_html = f"<h2>Hi {customer_name}, here is what's fresh this week at Legacy Farms!</h2>" + inventory_list
+        
+        send_update_email(email, personalized_html)
