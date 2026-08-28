@@ -1,5 +1,6 @@
 import streamlit as st
 import gspread
+st.set_page_config(page_title="Legacy Farms", page_icon="🌱")
 
 # 1. Recreate the physical JSON file in the cloud server's temporary memory
 with open("/tmp/service_account.json", "w") as f:
