@@ -94,20 +94,19 @@ with tab3:
                 LOGOUT_URL = "https://raw.githubusercontent.com/applegacyfarms-maker/legacy-farms-app/main/legacy_logo.png"
                 FOOTER_HTML = f"""
                     <div style="border-top: 2px solid #2e8b57; padding-top: 15px; margin-top: 25px; font-family: sans-serif; text-align: center; color: #1c452e;">
-                        <img src="{LOGOUT_URL}" alt="Legacy Farm" style="max-width: 200px; width: 100%; height: auto; display: block; margin: 0 auto 10px auto;"><br>
-                        <div style="margin-top: 5px;">
-                            <strong>Sarah Jenkins, Farm Manager</strong><br>
-                            <a href="mailto:sjenkins@legacyfarm.net" style="color: #2e8b57; text-decoration: none;">sjenkins@legacyfarm.net</a><br>
-                            <a href="tel:5555550199" style="color: #1c452e; text-decoration: none;">(555) 555-0199</a><br>
-                            Legacy Farm, 123 Rural Lane, Farmville, ST 98765<br>
-                            <a href="http://www.legacyfarm.net" style="color: #2e8b57; text-decoration: none;">www.legacyfarm.net</a><br>
-                            <div style="margin-top: 10px; font-size: 0.9em;">
-                                Follow us: | <a href="https://www.facebook.com/LegacyFarm" style="color: #2e8b57; text-decoration: none;">Facebook @LegacyFarm</a> | 
-                                <a href="https://www.instagram.com/LegacyFarm" style="color: #2e8b57; text-decoration: none;">Instagram @LegacyFarm</a> |
-                            </div>
+                    <img src="{LOGOUT_URL}" alt="Legacy Farm" style="max-width: 200px; width: 100%; height: auto; display: block; margin: 0 auto 10px auto;"><br>
+                    <div style="margin-top: 5px;">
+                        <strong>Sarah Jenkins, Farm Manager</strong><br>
+                        <a href="mailto:sjenkins@legacyfarm.net" style="color: #2e8b57; text-decoration: none;">sjenkins@legacyfarm.net</a><br>
+                        <a href="tel:(251)331-2132" style="color: #1c452e; text-decoration: none;">(555) 555-0199</a><br>
+                        Legacy Farms and Nursery, 14051 Boothtown Rd, Citronelle, AL 36522<br>
+                        <a href="http://www.legacyfarm.net" style="color: #2e8b57; text-decoration: none;">www.legacyfarmsandnursery.com/</a><br>
+                        <div style="margin-top: 10px; font-size: 0.9em;">
+                            Follow us: | <a href="https://www.facebook.com/p/Legacy-Farms-and-Nursery-100084808846225" style="color: #2e8b57; text-decoration: none;">Facebook @Legacy-Farms-and-Nursery</a> | 
                         </div>
                     </div>
-                """
+                </div>
+            """
                 
                 SENDER_EMAIL = "app.legacyfarms@gmail.com"
                 APP_PASSWORD = st.secrets["GMAIL_PASSWORD"]
