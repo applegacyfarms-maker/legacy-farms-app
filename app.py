@@ -50,3 +50,17 @@ with tab2:
         row_index = item_names.index(fix_item) + 2
         worksheet.update_cell(row_index, 2, new_total)
         st.success(f"Fixed! {fix_item} inventory is now set to {new_total}.")
+st.rerun() # Refreshes the screen instantly after overwriting
+
+    st.divider() # Draws a clean visual line between the two tools
+    
+    st.subheader("Quick Restock")
+    restock_qty = st.number_input("Quantity to add:", min_value=1, step=1, key="add_qty")
+    
+    if st.button("Add to Inventory"):
+        row_index = item_names.index(fix_item) + 2
+        new_qty = current_stock + restock_qty
+        
+        worksheet.update_cell(row_index, 2, new_qty)
+        st.success(f"Successfully added {restock_qty} to {fix_item}! New total: {new_qty}")
+        st.rerun()
