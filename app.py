@@ -94,7 +94,7 @@ with tab3:
                 LOGOUT_URL = "URL_OF_YOUR_ONLINE_HOSTED_LOGO_IMAGE"
                 FOOTER_HTML = f"""
                     <div style="border-top: 2px solid #2e8b57; padding-top: 10px; margin-top: 20px; font-family: sans-serif; text-align: center; color: #1c452e;">
-                        <img src="{https://github.com/applegacyfarms-maker/legacy-farms-app/blob/main/.github/legacy_logo.png?raw=true}" alt="Legacy Farm" style="max-width: 100%; height: auto;"><br>
+                        <img src="{src="https://raw.githubusercontent.com/applegacyfarms-maker/legacy-farms-app/main/legacy_logo.png"}" alt="Legacy Farm" style="max-width: 100%; height: auto;"><br>
                         <div style="margin-top: 10px;">
                             <strong>Sarah Jenkins, Farm Manager</strong><br>
                             <a href="mailto:sjenkins@legacyfarm.net" style="color: #2e8b57; text-decoration: none;">sjenkins@legacyfarm.net</a><br>
