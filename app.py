@@ -1,4 +1,5 @@
 import streamlit as st
+import datetime
 import gspread
 import smtplib
 from email.mime.text import MIMEText
@@ -91,6 +92,9 @@ with tab3:
                 inventory_list += "</ul><p>This is an automated email from Legacy Farms, please contact them directly at the contact info below to order. Thanks!</p>"
                 
                 # Define the footer and hosted image URL
+               # Generate a unique timestamp for every blast
+                current_time = datetime.datetime.now().strftime("%b %d, %Y %I:%M %p")
+                
                 LOGOUT_URL = "https://raw.githubusercontent.com/applegacyfarms-maker/legacy-farms-app/main/legacy_logo.png"
                 FOOTER_HTML = f"""
                     <div style="border-top: 2px solid #2e8b57; padding-top: 15px; margin-top: 25px; font-family: sans-serif; text-align: center; color: #1c452e;">
@@ -104,6 +108,9 @@ with tab3:
                             <div style="margin-top: 10px; font-size: 0.9em;">
                                 Follow us: | <a href="https://www.facebook.com/p/Legacy-Farms-and-Nursery-100084808846225" style="color: #2e8b57; text-decoration: none;">Facebook @Legacy-Farms-and-Nursery</a> | 
                             </div>
+                        </div>
+                        <div style="margin-top: 20px; font-size: 10px; color: #cccccc;">
+                            Broadcast ID: {current_time}
                         </div>
                     </div>
                 """
