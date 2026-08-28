@@ -91,10 +91,10 @@ with tab3:
                 inventory_list += "</ul><p>Reply to this email to reserve your order before we hit the road!</p>"
                 
                 # Define the footer and hosted image URL
-                LOGOUT_URL = "URL_OF_YOUR_ONLINE_HOSTED_LOGO_IMAGE"
+                LOGOUT_URL = "https://raw.githubusercontent.com/applegacyfarms-maker/legacy-farms-app/main/legacy_logo.png"
                 FOOTER_HTML = f"""
                     <div style="border-top: 2px solid #2e8b57; padding-top: 10px; margin-top: 20px; font-family: sans-serif; text-align: center; color: #1c452e;">
-                        <img src="{src="https://raw.githubusercontent.com/applegacyfarms-maker/legacy-farms-app/main/legacy_logo.png"}" alt="Legacy Farm" style="max-width: 100%; height: auto;"><br>
+                        <img src="{LOGOUT_URL}" alt="Legacy Farm" style="max-width: 100%; height: auto;">
                         <div style="margin-top: 10px;">
                             <strong>Sarah Jenkins, Farm Manager</strong><br>
                             <a href="mailto:sjenkins@legacyfarm.net" style="color: #2e8b57; text-decoration: none;">sjenkins@legacyfarm.net</a><br>
