@@ -20,9 +20,6 @@ customers_data = sh.worksheet("Customers").get_all_records() # ADD THIS LINE
 
 # ... skipping down to your tabs section ...
 
-# UPDATE THIS LINE TO INCLUDE 3 TABS:
-tab1, tab2, tab3 = st.tabs(["Log Daily Sales", "Fix Errors / Restock", "Broadcast Emails"])
-
 # Stop the app if the sheet only has headers and no data
 if not data:
     st.warning("Inventory is empty! Add items directly in Google Sheets first.")
@@ -32,7 +29,7 @@ item_names = [str(row['Item Name']) for row in data]
 
 st.title("🌱 Legacy Farms Inventory")
 
-tab1, tab2 = st.tabs(["Log Daily Sales", "Fix Errors / Restock"])
+tab1, tab2, tab3 = st.tabs(["Log Daily Sales", "Fix Errors / Restock", "Broadcast Emails"])
 
 with tab1:
     st.header("Log a Sale")
