@@ -122,29 +122,24 @@ with tab3:
                     
                     # Only send if they have an email AND are marked 'yes'
                     if email and send_status == 'yes':
-                        # 1. Create a simple text-only fallback (no HTML tags)
-                    plain_text = f"Hi {customer_name}, here is what's fresh this week at Legacy Farms!\n\nReply to this email to reserve your order before we hit the road."
-
-                    # 2. Your existing HTML format
-                    personalized_html = f"<h2>Hi {customer_name}, here is what's fresh this week at Legacy Farms!</h2>" + inventory_list + FOOTER_HTML
-
-                           # 1. Create a simple text-only fallback (no HTML tags)
-                    plain_text = f"Hi {customer_name}, here is what's fresh this week at Legacy Farms!\n\nReply to this email to reserve your order before we hit the road."
-
-                    # 2. Your existing HTML format
-                    personalized_html = f"<h2>Hi {customer_name}, here is what's fresh this week at Legacy Farms!</h2>" + inventory_list + FOOTER_HTML
-
-                    msg = MIMEMultipart("alternative")
-                    msg['Subject'] = "Legacy Farms: Fresh stock is ready!"
-                    msg['From'] = SENDER_EMAIL
-                    msg['To'] = email
-
-                    # 3. Attach BOTH! (The plain-text version MUST be attached first)
-                    msg.attach(MIMEText(plain_text, "plain"))
-                    msg.attach(MIMEText(personalized_html, "html"))
-                    
-                    with smtplib.SMTP_SSL('smtp.gmail.com', 465) as server:
-                        server.login(SENDER_EMAIL, APP_PASSWORD)
-                        server.sendmail(SENDER_EMAIL, email, msg.as_string())
+                   
+                               # 1. Create a simple text-only fallback (no HTML tags)
+                        plain_text = f"Hi {customer_name}, here is what's fresh this week at Legacy Farms!\n\nReply to this email to reserve your order before we hit the road."
+    
+                        # 2. Your existing HTML format
+                        personalized_html = f"<h2>Hi {customer_name}, here is what's fresh this week at Legacy Farms!</h2>" + inventory_list + FOOTER_HTML
+    
+                        msg = MIMEMultipart("alternative")
+                        msg['Subject'] = "Legacy Farms: Fresh stock is ready!"
+                        msg['From'] = SENDER_EMAIL
+                        msg['To'] = email
+    
+                        # 3. Attach BOTH! (The plain-text version MUST be attached first)
+                        msg.attach(MIMEText(plain_text, "plain"))
+                        msg.attach(MIMEText(personalized_html, "html"))
+                        
+                        with smtplib.SMTP_SSL('smtp.gmail.com', 465) as server:
+                            server.login(SENDER_EMAIL, APP_PASSWORD)
+                            server.sendmail(SENDER_EMAIL, email, msg.as_string())
                             
                 st.success("Boom! Emails successfully sent to selected customers.")
