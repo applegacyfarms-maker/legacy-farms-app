@@ -75,43 +75,43 @@ with tab2:
         st.success(f"Successfully added {restock_qty} to {fix_item}! New total: {new_qty}")
         st.rerun()
     with tab3:
-    st.header("Broadcast Stock Email")
-    st.write("Clicking this button will instantly email the current inventory to all customers.")
-    
-    if st.button("Send Email Blast Now"):
-        with st.spinner("Compiling inventory and sending emails..."):
-            available_items = [
-                item for item in data 
-                if str(item['Ready to Ship?']).strip().lower() == 'yes' and int(item['Quantity Available']) > 0
-            ]
-            
-            if not available_items:
-                st.warning("Nothing to ship this week. Emails cancelled.")
-            else:
-                inventory_list = "<ul>"
-                for item in available_items:
-                    inventory_list += f"<li><b>{item['Item Name']}</b>: {item['Quantity Available']} available at ${item['Price']}</li>"
-                inventory_list += "</ul><p>Reply to this email to reserve your order before we hit the road!</p>"
+        st.header("Broadcast Stock Email")
+        st.write("Clicking this button will instantly email the current inventory to all customers.")
+        
+        if st.button("Send Email Blast Now"):
+            with st.spinner("Compiling inventory and sending emails..."):
+                available_items = [
+                    item for item in data 
+                    if str(item['Ready to Ship?']).strip().lower() == 'yes' and int(item['Quantity Available']) > 0
+                ]
                 
-                SENDER_EMAIL = "app.legacyfarms@gmail.com"
-                APP_PASSWORD = st.secrets["GMAIL_PASSWORD"]
-                
-                for customer in customers_data:
-                    email = str(customer.get('Email Address', '')).strip()
-                    customer_name = str(customer.get('Name', 'Friend')).strip()
-                    if not customer_name:
-                        customer_name = "Friend"
+                if not available_items:
+                    st.warning("Nothing to ship this week. Emails cancelled.")
+                else:
+                    inventory_list = "<ul>"
+                    for item in available_items:
+                        inventory_list += f"<li><b>{item['Item Name']}</b>: {item['Quantity Available']} available at ${item['Price']}</li>"
+                    inventory_list += "</ul><p>Reply to this email to reserve your order before we hit the road!</p>"
                     
-                    if email:
-                        personalized_html = f"<h2>Hi {customer_name}, here is what's fresh this week at Legacy Farms!</h2>" + inventory_list
-                        msg = MIMEMultipart("alternative")
-                        msg['Subject'] = "Legacy Farms: Fresh stock is ready!"
-                        msg['From'] = SENDER_EMAIL
-                        msg['To'] = email
-                        msg.attach(MIMEText(personalized_html, "html"))
+                    SENDER_EMAIL = "app.legacyfarms@gmail.com"
+                    APP_PASSWORD = st.secrets["GMAIL_PASSWORD"]
+                    
+                    for customer in customers_data:
+                        email = str(customer.get('Email Address', '')).strip()
+                        customer_name = str(customer.get('Name', 'Friend')).strip()
+                        if not customer_name:
+                            customer_name = "Friend"
                         
-                        with smtplib.SMTP_SSL('smtp.gmail.com', 465) as server:
-                            server.login(SENDER_EMAIL, APP_PASSWORD)
-                            server.sendmail(SENDER_EMAIL, email, msg.as_string())
+                        if email:
+                            personalized_html = f"<h2>Hi {customer_name}, here is what's fresh this week at Legacy Farms!</h2>" + inventory_list
+                            msg = MIMEMultipart("alternative")
+                            msg['Subject'] = "Legacy Farms: Fresh stock is ready!"
+                            msg['From'] = SENDER_EMAIL
+                            msg['To'] = email
+                            msg.attach(MIMEText(personalized_html, "html"))
                             
-                st.success("Boom! Emails successfully sent to all customers.")
+                            with smtplib.SMTP_SSL('smtp.gmail.com', 465) as server:
+                                server.login(SENDER_EMAIL, APP_PASSWORD)
+                                server.sendmail(SENDER_EMAIL, email, msg.as_string())
+                                
+                    st.success("Boom! Emails successfully sent to all customers.")
